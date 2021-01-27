@@ -4,7 +4,7 @@ import tensorflow as tf
 import numpy as np
 import torch
 import os
-from src.shopping_classifier.shopping_main import find_shopping_item
+from shopping_classifier.shopping_main import find_shopping_item
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 

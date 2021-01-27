@@ -5,13 +5,18 @@ description = ""
 authors = []
 
 [tool.poetry.dependencies]
-python = "<3.9,>=3.7"  # require Python 3.8 for compatibility (3.7 might work too)
+python = "<3.9,>=3.7.1"  # require Python 3.8 for compatibility (3.7 might work too)
 sclog = "*"
 grpcio = "^1.35.0"
 protobuf = "^3.14.0"
 colorlog = "^4.7.2"
 torch = "^1.7.1"
 tensorflow = "2.3.1"
+pandas = "^1.2.1"
+spacy = "^2.3.5"
+scikit-learn = "^0.23.1"
+nltk = "^3.5"
+en-core-web-sm = {url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.0/en_core_web_sm-2.2.0.tar.gz"}
 
 [tool.poetry.dev-dependencies]
 pylint = "*"

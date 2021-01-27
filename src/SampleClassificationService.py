@@ -3,7 +3,7 @@ from sclog import getLogger
 
 from plp.proto import Classification_pb2
 from plp.proto import Classification_pb2_grpc
-from src.shopping_classifier.shopping_skill import ShoppingSkill
+from shopping_classifier.shopping_skill import ShoppingSkill
 
 logger = getLogger(__name__)
 
@@ -26,8 +26,8 @@ class SampleClassificationService(
         result_confidence = skill_prob #1.0
         result_extras = "fake classification"
         if skill_label != "oos":
-            result_extras = self.skill.find_shopping_item(request.text) # "fake classification"
-
+            _, prob, shopping_item = self.skill.find_shopping_item(request.text)
+            result_extras = f"Shopping item found: {shopping_item} with prob {prob}" 
         return Classification_pb2.ClassificationResponse(
             classifierName="sample",
             classification=result_classification,
