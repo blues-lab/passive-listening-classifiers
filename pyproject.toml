@@ -10,6 +10,8 @@ sclog = "*"
 grpcio = "^1.35.0"
 protobuf = "^3.14.0"
 colorlog = "^4.7.2"
+torch = "^1.7.1"
+tensorflow = "2.3.1"
 
 [tool.poetry.dev-dependencies]
 pylint = "*"
