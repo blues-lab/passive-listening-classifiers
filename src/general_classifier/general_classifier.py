@@ -21,6 +21,7 @@ class GeneralClassifierSkill(object):
         self.infraset_model = None
         self.ffcc = None
         self.label_encoding = None
+        self.model_folder = basedir
         self.init_models()
 
     def init_models(self):
