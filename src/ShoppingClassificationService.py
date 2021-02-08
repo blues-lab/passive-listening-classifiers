@@ -10,7 +10,7 @@ logger = getLogger(__name__)
 CLASSIFICATION_SERVICE_PORT = 50060
 
 
-class SampleClassificationService(
+class ShoppingClassificationService(
     Classification_pb2_grpc.ClassificationServiceServicer
 ):
     def __init__(self) -> None:
