@@ -139,3 +139,15 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+*.db
+*.pkl
+*.npy
+*.bin
+transcription/wav2lettermodel
+*.arch
+*.wav
+encoder/
+ffcc_keras_model/
+.vscode/
+*.torch
