@@ -3,31 +3,28 @@ from sclog import getLogger
 
 from plp.proto import Classification_pb2
 from plp.proto import Classification_pb2_grpc
-from shopping_classifier.shopping_skill import ShoppingSkill
+from general_classifier.general_classifier import GeneralClassifierSkill
 
 logger = getLogger(__name__)
 
-CLASSIFICATION_SERVICE_PORT = 50061
+CLASSIFICATION_SERVICE_PORT = 50060
 
 
-class GeneralClassificationService(
+class SampleClassificationService(
     Classification_pb2_grpc.ClassificationServiceServicer
 ):
     def __init__(self) -> None:
         super().__init__()
-        self.skill = ShoppingSkill()
+        self.skill = GeneralClassifierSkill()
 
     def ClassifyText(self, request, context):
-        logger.debug("received request %i to classify %s", request.id, request.text)
+        logger.debug("received genera classification request %i to classify %s", request.id, request.text)
         skill_label, skill_prob = self.skill.classify(request.text)
 
         # Here we'd actually run the classifier
         result_classification = skill_label #"oos"
         result_confidence = skill_prob #1.0
-        result_extras = "fake classification"
-        if skill_label != "oos":
-            _, prob, shopping_item = self.skill.find_shopping_item(request.text)
-            result_extras = f"Shopping item found: {shopping_item} with prob {prob}" 
+        result_extras = ""
         return Classification_pb2.ClassificationResponse(
             classifierName="sample",
             classification=result_classification,
