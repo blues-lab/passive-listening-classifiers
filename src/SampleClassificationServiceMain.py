@@ -8,7 +8,7 @@ from sclog import getLogger
 
 from grpc_helper import get_server_for_args
 from plp.proto import Classification_pb2_grpc
-import SampleClassificationService
+import GeneralClassificationService
 
 logger = getLogger(__name__)
 
@@ -33,14 +33,14 @@ def main():
     args = parser.parse_args()
 
     server = get_server_for_args(
-        SampleClassificationService.CLASSIFICATION_SERVICE_PORT,
+        GeneralClassificationService.CLASSIFICATION_SERVICE_PORT,
         args.key,
         args.cert,
         args.root,
     )
 
     Classification_pb2_grpc.add_ClassificationServiceServicer_to_server(
-        servicer=SampleClassificationService.SampleClassificationService(),
+        servicer=GeneralClassificationService.SampleClassificationService(),
         server=server,
     )
 
