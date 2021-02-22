@@ -7,10 +7,10 @@ from general_classifier.general_classifier import GeneralClassifierSkill
 
 logger = getLogger(__name__)
 
-CLASSIFICATION_SERVICE_PORT = 50060
+CLASSIFICATION_SERVICE_PORT = 50061
 
 
-class SampleClassificationService(
+class GeneralClassificationService(
     Classification_pb2_grpc.ClassificationServiceServicer
 ):
     def __init__(self) -> None:
