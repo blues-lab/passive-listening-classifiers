@@ -1,17 +1,33 @@
+import GeneralClassificationService
+import ShoppingClassificationService
 import argparse
 import typing
 from concurrent import futures
 from pathlib import Path
-
+from threading import Thread
 import grpc
 from sclog import getLogger
 
 from grpc_helper import get_server_for_args
 from plp.proto import Classification_pb2_grpc
-import GeneralClassificationService
 
 logger = getLogger(__name__)
 
+def run_server(classification_service, port, args):
+    server = get_server_for_args(
+        port,
+        args.key,
+        args.cert,
+        args.root,
+    )
+
+    # Can also be seperate on to a seperate server
+    Classification_pb2_grpc.add_ClassificationServiceServicer_to_server(
+        servicer=classification_service,
+        server=server,
+    )
+    server.start()
+    server.wait_for_termination()
 
 def main():
     parser = argparse.ArgumentParser(__doc__)
@@ -30,23 +46,21 @@ def main():
         type=str,
         help="Path to root certificates",
     )
-    args = parser.parse_args()
+    server_args = parser.parse_args()
 
-    server = get_server_for_args(
-        GeneralClassificationService.CLASSIFICATION_SERVICE_PORT,
-        args.key,
-        args.cert,
-        args.root,
-    )
-
-    Classification_pb2_grpc.add_ClassificationServiceServicer_to_server(
-        servicer=GeneralClassificationService.SampleClassificationService(),
-        server=server,
-    )
-
-    server.start()
-    server.wait_for_termination()
-
+    servers = []
+    servers.append(Thread(target=run_server,
+                                 args=(GeneralClassificationService.GeneralClassificationService(), 
+                                 GeneralClassificationService.CLASSIFICATION_SERVICE_PORT, 
+                                 server_args)))
+    servers.append(Thread(target=run_server,
+                                 args=(ShoppingClassificationService.ShoppingClassificationService(), 
+                                 ShoppingClassificationService.CLASSIFICATION_SERVICE_PORT, 
+                                 server_args)))
+    for server in servers:
+        server.start()
+    for server in servers:
+        server.join()
 
 if __name__ == "__main__":
     main()
