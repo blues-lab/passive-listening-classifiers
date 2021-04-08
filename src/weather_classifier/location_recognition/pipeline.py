@@ -1,4 +1,4 @@
-from spacy_NER import find_most_recent_LOCs
+from weather_classifier.location_recognition.spacy_NER import find_most_recent_LOCs
 from handle_qa_multiple_option import handle_qa
 import spacy
 def spacy_token_to_str(spacy_res):

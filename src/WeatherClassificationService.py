@@ -3,11 +3,11 @@ from sclog import getLogger
 
 from plp.proto import Classification_pb2
 from plp.proto import Classification_pb2_grpc
-from general_classifier.general_classifier import GeneralClassifierSkill
+from weather_classifier.weather_classifier import WeatherClassifierSkill
 
 logger = getLogger(__name__)
 
-CLASSIFICATION_SERVICE_PORT = 50062
+CLASSIFICATION_SERVICE_PORT = 50060
 
 
 class WeatherClassificationService(
@@ -15,7 +15,7 @@ class WeatherClassificationService(
 ):
     def __init__(self) -> None:
         super().__init__()
-        self.skill = GeneralClassifierSkill()
+        self.skill = WeatherClassifierSkill()
 
     def ClassifyText(self, request, context):
         logger.debug("received weather classification request %i to classify %s", request.id, request.text)
@@ -26,7 +26,7 @@ class WeatherClassificationService(
         result_confidence = skill_prob #1.0
         result_extras = ""
         return Classification_pb2.ClassificationResponse(
-            classifierName="sample",
+            classifierName="weather",
             classification=result_classification,
             confidence=result_confidence,
             extras=result_extras,
