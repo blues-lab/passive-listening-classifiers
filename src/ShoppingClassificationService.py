@@ -26,10 +26,10 @@ class ShoppingClassificationService(
         result_confidence = skill_prob #1.0
         result_extras = "fake classification"
         if skill_label != "oos":
-            _, prob, shopping_item = self.skill.find_shopping_item(request.text)
-            result_extras = f"Shopping item found: {shopping_item} with prob {prob}" 
+            shopping_items = self.skill.find_shopping_item(request.text)
+            result_extras = f"Shopping item found: {shopping_items}" 
         return Classification_pb2.ClassificationResponse(
-            classifierName="sample",
+            classifierName="Shopping",
             classification=result_classification,
             confidence=result_confidence,
             extras=result_extras,
