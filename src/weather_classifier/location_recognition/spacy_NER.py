@@ -2,8 +2,8 @@
 import spacy
 import truecase
 
-with open("src/weather_classifier/location_recognition/context.txt") as f:
-    context = f.readlines()
+#with open("/context.txt") as f:
+#    context = f.readlines()
 
 
 

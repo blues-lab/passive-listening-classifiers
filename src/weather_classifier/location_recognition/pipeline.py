@@ -1,6 +1,6 @@
-from spacy_NER import all_LOCs_with_frequencies
-from handle_qa_multiple_option import handle_qa
-from remove_punc_and_stopwords import remove_punc
+from .spacy_NER import all_LOCs_with_frequencies
+from .handle_qa_multiple_option import handle_qa
+from .remove_punc_and_stopwords import remove_punc
 import spacy
 import pandas as pd
 
