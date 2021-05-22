@@ -2,8 +2,11 @@ from sentence_transformers import SentenceTransformer, util
 import random
 import tqdm
 
+with open("triggers.txt") as f:
+    triggers = f.readlines()
+
 model = SentenceTransformer('paraphrase-distilroberta-base-v1')
-def is_trigger_sentence_transformer(sents, triggers):
+def is_trigger_sentence_transformer(sents):
 #Compute embedding for both lists
     embeddings1 = model.encode([sents], convert_to_tensor=True)
     embeddings2 = model.encode([triggers], convert_to_tensor=True)
