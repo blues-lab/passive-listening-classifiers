@@ -10,6 +10,8 @@ from sclog import getLogger
 
 from grpc_helper import get_server_for_args
 from plp.proto import Classification_pb2_grpc
+import WeatherClassificationService
+
 
 logger = getLogger(__name__)
 
@@ -56,6 +58,10 @@ def main():
     servers.append(Thread(target=run_server,
                                  args=(ShoppingClassificationService.ShoppingClassificationService(), 
                                  ShoppingClassificationService.CLASSIFICATION_SERVICE_PORT, 
+                                 server_args)))
+    servers.append(Thread(target=run_server,
+                                 args=(WeatherClassificationService.WeatherClassificationService(), 
+                                 WeatherClassificationService.CLASSIFICATION_SERVICE_PORT, 
                                  server_args)))
     for server in servers:
         server.start()
