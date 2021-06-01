@@ -1,0 +1,19 @@
+{
+    "models": [
+        {
+            "name": "general",
+            "relative_folder_location": "src/",
+            "download_url": "https://drive.google.com/uc?id=1HmMLxBfmLVpYYK9UX5VHS8Bm26stRbhL",
+            "provider": "google", 
+            "file_type": "zip"
+        },
+        {
+            "name": "shopping", 
+            "relative_folder_location": "src/",
+            "download_url": "https://drive.google.com/uc?id=142rBVxu40v66C-j6k0ikx1V0Kg-yvo_I",
+            "provider": "google",
+            "file_type": "zip"
+
+        }
+    ]
+}
