@@ -21,7 +21,7 @@ Example model json format
 """
 with open("src/models.json") as model_file:
     models_dict = json.load(model_file)["models"]
-    for model_download in models_dict[:1]:
+    for model_download in models_dict:
         relative_folder_loc = model_download["relative_folder_location"]
         name = model_download["name"]
         file_type = model_download["file_type"]
