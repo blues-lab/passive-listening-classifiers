@@ -7,7 +7,7 @@ class WeatherClassifierSkill(object):
         self.log = collections.deque(maxlen=100)
 
     def classify(self, text):
-        self.log.extend(text)
+        self.log.append(text)
         if not is_trigger_sentence_transformer(text):
             return "No Trigger", 1.0
         location = compute_loc(list(self.log))
