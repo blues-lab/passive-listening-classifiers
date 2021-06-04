@@ -17,3 +17,9 @@ poetry shell
 ## Running
 
     python src/SampleClassificationServiceMain.py
+
+## Download models
+based on the model description at src/models.json the models are downloaded to their respective folder.
+```
+    python src/file_download.py
+```

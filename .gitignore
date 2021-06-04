@@ -151,3 +151,4 @@ encoder/
 ffcc_keras_model/
 .vscode/
 *.torch
+*.zip
