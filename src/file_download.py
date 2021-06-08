@@ -3,6 +3,11 @@ import json
 import os
 import gdown
 import zipfile
+<<<<<<< Updated upstream
+=======
+import click
+import requests
+>>>>>>> Stashed changes
 
 def extract_id_from_google_drive_share_link(drive_link):
     return drive_link
@@ -33,10 +38,14 @@ with open("src/models.json") as model_file:
         
         url = model_download["download_url"]
         output = os.path.join(relative_folder_loc, f'{name}_model_files.{file_type}')
-        
+
+        print(url, output)
         if provider == "google":
             print(url, output)
             gdown.download(url, output, quiet=False)
+        if provider == "http" or provider == "https":
+            r = requests.get(url)
+            open(output, 'wb').write(r.content)
         else:
             raise UnsupportedOperation()
 
