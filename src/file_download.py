@@ -3,14 +3,25 @@ import json
 import os
 import gdown
 import zipfile
-<<<<<<< Updated upstream
-=======
 import click
 import requests
->>>>>>> Stashed changes
 
 def extract_id_from_google_drive_share_link(drive_link):
     return drive_link
+
+
+def download_file(url, local_filename):
+#     local_filename = url.split('/')[-1]
+    # NOTE the stream=True parameter below
+    with requests.get(url, stream=True) as r:
+        r.raise_for_status()
+        with open(local_filename, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=8192): 
+                # If you have chunk encoded response uncomment if
+                # and set chunk_size parameter to None.
+                #if chunk: 
+                f.write(chunk)
+    return local_filename
 
 """
 Example model json format
@@ -44,8 +55,7 @@ with open("src/models.json") as model_file:
             print(url, output)
             gdown.download(url, output, quiet=False)
         if provider == "http" or provider == "https":
-            r = requests.get(url)
-            open(output, 'wb').write(r.content)
+            download_file(url, output)
         else:
             raise UnsupportedOperation()
 
