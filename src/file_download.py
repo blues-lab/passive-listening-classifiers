@@ -3,6 +3,8 @@ import json
 import os
 import gdown
 import zipfile
+import click
+
 
 def extract_id_from_google_drive_share_link(drive_link):
     return drive_link
@@ -26,13 +28,16 @@ with open("src/models.json") as model_file:
         name = model_download["name"]
         file_type = model_download["file_type"]
         provider = model_download["provider"]
-        print(f"Download model for {name} at {relative_folder_loc} with {provider}")
+        print(f"Downloading model for {name} at {relative_folder_loc} with {provider}")
 
         if not os.path.exists(relative_folder_loc):
             os.mkdir(relative_folder_loc)
         
         url = model_download["download_url"]
         output = os.path.join(relative_folder_loc, f'{name}_model_files.{file_type}')
+        if os.path.exists(output):
+            if not click.confirm(f'Download {name} Already Exists! Do you want to redownload the file?', default=True):
+                continue
         
         if provider == "google":
             print(url, output)
