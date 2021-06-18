@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x14PermissionPoll.proto\x12\tplp.proto\"%\n\x15PermissionPollRequest\x12\x0c\n\x04type\x18\x01 \x01(\t\"E\n\x16PermissionPollResponse\x12\x10\n\x08template\x18\x01 \x01(\t\x12\x0c\n\x04slot\x18\x02 \x01(\t\x12\x0b\n\x03url\x18\x03 \x01(\t2p\n\x15PermissionPollService\x12W\n\x0ePermissionPoll\x12 .plp.proto.PermissionPollRequest\x1a!.plp.proto.PermissionPollResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x14PermissionPoll.proto\x12\tplp.proto\"(\n\x15PermissionPollRequest\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\"E\n\x16PermissionPollResponse\x12\x10\n\x08template\x18\x01 \x01(\t\x12\x0c\n\x04slot\x18\x02 \x01(\t\x12\x0b\n\x03url\x18\x03 \x01(\t2p\n\x15PermissionPollService\x12W\n\x0ePermissionPoll\x12 .plp.proto.PermissionPollRequest\x1a!.plp.proto.PermissionPollResponse\"\x00\x62\x06proto3'
 )
 
 
@@ -34,7 +34,7 @@ _PERMISSIONPOLLREQUEST = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='type', full_name='plp.proto.PermissionPollRequest.type', index=0,
+      name='content', full_name='plp.proto.PermissionPollRequest.content', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -53,7 +53,7 @@ _PERMISSIONPOLLREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=35,
-  serialized_end=72,
+  serialized_end=75,
 )
 
 
@@ -98,8 +98,8 @@ _PERMISSIONPOLLRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=74,
-  serialized_end=143,
+  serialized_start=77,
+  serialized_end=146,
 )
 
 DESCRIPTOR.message_types_by_name['PermissionPollRequest'] = _PERMISSIONPOLLREQUEST
@@ -129,8 +129,8 @@ _PERMISSIONPOLLSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=145,
-  serialized_end=257,
+  serialized_start=148,
+  serialized_end=260,
   methods=[
   _descriptor.MethodDescriptor(
     name='PermissionPoll',

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x17PermissionDisplay.proto\x12\tplp.proto\"(\n\x18PermissionDisplayRequest\x12\x0c\n\x04type\x18\x01 \x01(\t\")\n\x19PermissionDisplayResponse\x12\x0c\n\x04text\x18\x01 \x01(\t2|\n\x18PermissionDisplayService\x12`\n\x11PermissionDisplay\x12#.plp.proto.PermissionDisplayRequest\x1a$.plp.proto.PermissionDisplayResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x17PermissionDisplay.proto\x12\tplp.proto\"+\n\x18PermissionDisplayRequest\x12\x0f\n\x07\x63ontent\x18\x01 \x01(\t\")\n\x19PermissionDisplayResponse\x12\x0c\n\x04text\x18\x01 \x01(\t2|\n\x18PermissionDisplayService\x12`\n\x11PermissionDisplay\x12#.plp.proto.PermissionDisplayRequest\x1a$.plp.proto.PermissionDisplayResponse\"\x00\x62\x06proto3'
 )
 
 
@@ -34,7 +34,7 @@ _PERMISSIONDISPLAYREQUEST = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='type', full_name='plp.proto.PermissionDisplayRequest.type', index=0,
+      name='content', full_name='plp.proto.PermissionDisplayRequest.content', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -53,7 +53,7 @@ _PERMISSIONDISPLAYREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=38,
-  serialized_end=78,
+  serialized_end=81,
 )
 
 
@@ -84,8 +84,8 @@ _PERMISSIONDISPLAYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=80,
-  serialized_end=121,
+  serialized_start=83,
+  serialized_end=124,
 )
 
 DESCRIPTOR.message_types_by_name['PermissionDisplayRequest'] = _PERMISSIONDISPLAYREQUEST
@@ -115,8 +115,8 @@ _PERMISSIONDISPLAYSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=123,
-  serialized_end=247,
+  serialized_start=126,
+  serialized_end=250,
   methods=[
   _descriptor.MethodDescriptor(
     name='PermissionDisplay',

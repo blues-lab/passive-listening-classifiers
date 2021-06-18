@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import PermissionPoll_pb2 as PermissionPoll__pb2
+from plp.proto import PermissionPoll_pb2 as PermissionPoll__pb2
 
 
 class PermissionPollServiceStub(object):
