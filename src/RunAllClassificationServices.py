@@ -1,5 +1,5 @@
 import GeneralClassificationService
-import ShoppingClassificationService
+#import ShoppingClassificationService
 import argparse
 import typing
 from concurrent import futures
@@ -10,8 +10,12 @@ from sclog import getLogger
 
 from grpc_helper import get_server_for_args
 from plp.proto import Classification_pb2_grpc
-import WeatherClassificationService
+from plp.proto import Dashboard_pb2_grpc
 
+import WeatherClassificationService
+from dotenv import load_dotenv
+
+load_dotenv() 
 
 logger = getLogger(__name__)
 
@@ -27,6 +31,10 @@ def run_server(classification_service, port, args):
     Classification_pb2_grpc.add_ClassificationServiceServicer_to_server(
         servicer=classification_service,
         server=server,
+    )
+    Dashboard_pb2_grpc.add_DashboardServiceServicer_to_server(
+        servicer=classification_service,
+        server=server
     )
     server.start()
     server.wait_for_termination()
@@ -51,18 +59,21 @@ def main():
     server_args = parser.parse_args()
 
     servers = []
+    # servers.append(Thread(target=run_server,
+    #                              args=(GeneralClassificationService.GeneralClassificationService(), 
+    #                              GeneralClassificationService.CLASSIFICATION_SERVICE_PORT, 
+    #                              server_args)))
+#    servers.append(Thread(target=run_server,
+#                                 args=(ShoppingClassificationService.ShoppingClassificationService(), 
+#                                 ShoppingClassificationService.CLASSIFICATION_SERVICE_PORT, 
+#                                 server_args)))
     servers.append(Thread(target=run_server,
-                                 args=(GeneralClassificationService.GeneralClassificationService(), 
-                                 GeneralClassificationService.CLASSIFICATION_SERVICE_PORT, 
-                                 server_args)))
-    servers.append(Thread(target=run_server,
-                                 args=(ShoppingClassificationService.ShoppingClassificationService(), 
-                                 ShoppingClassificationService.CLASSIFICATION_SERVICE_PORT, 
-                                 server_args)))
-    servers.append(Thread(target=run_server,
-                                 args=(WeatherClassificationService.WeatherClassificationService(), 
-                                 WeatherClassificationService.CLASSIFICATION_SERVICE_PORT, 
-                                 server_args)))
+                                args=(WeatherClassificationService.WeatherClassificationService(), 
+                                WeatherClassificationService.CLASSIFICATION_SERVICE_PORT, 
+                                server_args)))
+    # run_server(WeatherClassificationService.WeatherClassificationService(), 
+    #             WeatherClassificationService.CLASSIFICATION_SERVICE_PORT,  server_args)
+
     for server in servers:
         server.start()
     for server in servers:

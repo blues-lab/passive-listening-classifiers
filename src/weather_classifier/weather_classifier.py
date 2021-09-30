@@ -11,6 +11,6 @@ class WeatherClassifierSkill(object):
         if not is_trigger_sentence_transformer(text):
             return "No Trigger", 1.0
         location = compute_loc(list(self.log))
-        label = "{} identified for weather app".format(location)
+        label = location
         prob = 1.0
         return label, prob

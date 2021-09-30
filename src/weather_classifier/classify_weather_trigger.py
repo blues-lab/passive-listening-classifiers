@@ -11,6 +11,7 @@ def is_trigger_sentence_transformer(sents):
     embeddings1 = model.encode([sents], convert_to_tensor=True)
     for trigger in triggers:
         cosine_scores = util.pytorch_cos_sim(embeddings1, trigger)
-        if cosine_scores[0] > .7:
+        print(cosine_scores)
+        if cosine_scores[0] >= .6:
             return True
     return False
