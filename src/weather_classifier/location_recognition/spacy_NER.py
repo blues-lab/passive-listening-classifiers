@@ -2,11 +2,8 @@
 import spacy
 import truecase
 
-#with open("/context.txt") as f:
+# with open("/context.txt") as f:
 #    context = f.readlines()
-
-
-
 
 
 def most_recent_GPE(sentence, nlp):
@@ -20,6 +17,7 @@ def most_recent_GPE(sentence, nlp):
             most_recent_GPE = ent
     return most_recent_GPE
 
+
 def find_most_recent_GPEs(context):
     """
     Returns a list of the most recent geopolitical entity (GPE) mentioned in set of lowercase sentences
@@ -29,15 +27,12 @@ def find_most_recent_GPEs(context):
     most_recent_GPEs = []
     for i in range(len(context)):
         st = truecase.get_true_case(context[i].lower())
-        print('\n'+st)
+        print("\n" + st)
         GPE = most_recent_GPE(st, nlp)
         print("===> Most recently named GPE:", GPE)
         print()
         most_recent_GPEs.append(GPE)
     return most_recent_GPEs
-
-
-
 
 
 def most_recent_LOC(sentence, nlp_wk):
@@ -57,11 +52,11 @@ def find_most_recent_LOCs(context):
     Returns a list of the most recent location (LOC) mentioned in set of lowercase sentences
     who are truecased back to having case. Uses xx_ent_wiki_sm spacy pipeline
     """
-    nlp_wk = spacy.load('xx_ent_wiki_sm')
+    nlp_wk = spacy.load("xx_ent_wiki_sm")
     most_recent_LOCs = []
     for i in range(len(context)):
         st = truecase.get_true_case(context[i].lower())
-        print('\n'+st)
+        print("\n" + st)
         location = most_recent_LOC(st, nlp_wk)
         print("===> Most recently named LOC:", location)
         print()
@@ -69,11 +64,9 @@ def find_most_recent_LOCs(context):
     return most_recent_LOCs
 
 
-
-
-
-
 nlp = spacy.load("en_core_web_lg")
+
+
 def two_most_frequent_GPEs(sentence):
     """
     Return the two most frequent Geopolitical Entities (GPEs) in string of lowercase sentence(s) along with their frequencies
@@ -96,7 +89,6 @@ def two_most_frequent_GPEs(sentence):
     return [(k[1], v[1]), (k[0], v[0])]
 
 
-
 def find_two_most_frequent_GPEs(context):
     """
     Returns a list of the tuple of the two most frequent geopolitical entities (GPEs) mentioned in set of lowercase sentences
@@ -105,7 +97,7 @@ def find_two_most_frequent_GPEs(context):
     most_frequent_GPEs = []
     for i in range(len(context)):
         st = truecase.get_true_case(context[i].lower())
-        print('\n'+st)
+        print("\n" + st)
         GPEs = two_most_frequent_GPEs(st)
         print("===> Most frequently named GPEs:", GPEs)
         print()
@@ -113,10 +105,9 @@ def find_two_most_frequent_GPEs(context):
     return most_frequent_GPEs
 
 
-
-
-
 nlp_wk = spacy.load("xx_ent_wiki_sm")
+
+
 def two_most_frequent_LOCs(sentence):
     """
     Return the two most frequent locations (LOCs) in string of lowercase sentence(s) along with their frequencies
@@ -139,7 +130,6 @@ def two_most_frequent_LOCs(sentence):
     return [(k[1], v[1]), (k[0], v[0])]
 
 
-
 def find_two_most_frequent_LOCs(context):
     """
     Returns a list of the tuple of the two most frequent locations (LOCs) mentioned in set of lowercase sentences
@@ -148,23 +138,12 @@ def find_two_most_frequent_LOCs(context):
     most_frequent_LOCs = []
     for i in range(len(context)):
         st = truecase.get_true_case(context[i].lower())
-        print('\n'+st)
+        print("\n" + st)
         LOCs = two_most_frequent_LOCs(st)
         print("===> Most frequently named LOCs:", LOCs)
         print()
         most_frequent_LOCs.append(LOCs)
     return most_frequent_LOCs
-
-
-
-
-
-
-
-
-
-
-
 
 
 def all_LOCs_with_frequencies(sentence):
@@ -183,8 +162,6 @@ def all_LOCs_with_frequencies(sentence):
     if not LOCs:
         return []
     return list(LOCs.items())
-
-
 
 
 # with open('most_recent.txt', 'w') as f:

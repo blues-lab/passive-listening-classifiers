@@ -14,7 +14,7 @@ CLASSIFICATION_SERVICE_PORT = 50060
 
 class GeneralClassificationService(
     Classification_pb2_grpc.ClassificationServiceServicer,
-    Dashboard_pb2_grpc.DashboardServiceServicer
+    Dashboard_pb2_grpc.DashboardServiceServicer,
 ):
     def __init__(self) -> None:
         super().__init__()
@@ -26,17 +26,20 @@ class GeneralClassificationService(
 
         return Dashboard_pb2.DashboardResponse(
             text=self.previous_classifications[:num_to_classify],
-            classificationName="general"
+            classificationName="general",
         )
 
-
     def ClassifyText(self, request, context):
-        logger.debug("received genera classification request %i to classify %s", request.id, request.text)
+        logger.debug(
+            "received genera classification request %i to classify %s",
+            request.id,
+            request.text,
+        )
         skill_label, skill_prob = self.skill.classify(request.text)
 
         # Here we'd actually run the classifier
-        result_classification = skill_label #"oos"
-        result_confidence = skill_prob #1.0
+        result_classification = skill_label  # "oos"
+        result_confidence = skill_prob  # 1.0
         result_extras = ""
         return Classification_pb2.ClassificationResponse(
             classifierName="sample",

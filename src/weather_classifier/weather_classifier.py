@@ -2,6 +2,7 @@ import collections
 from weather_classifier.classify_weather_trigger import is_trigger_sentence_transformer
 from weather_classifier.location_recognition.pipeline import compute_loc
 
+
 class WeatherClassifierSkill(object):
     def __init__(self):
         self.log = collections.deque(maxlen=100)

@@ -1,9 +1,11 @@
 import pickle
 import tensorflow as tf
-import numpy as np 
+import numpy as np
 import torch
 import os
+
 basedir = os.path.abspath(os.path.dirname(__file__))
+
 
 class GeneralClassifierSkill(object):
     OOS_CUTOFF = 0.7

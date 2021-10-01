@@ -26,6 +26,7 @@ from models import InferSent
 np.random.seed(3252)
 PATH = (os.path.dirname(os.path.abspath(__file__))) + "/"
 
+
 def get_doc2vec(text, model, verbose=False):
     emb = model.encode(text, verbose=verbose)
     return emb
@@ -38,8 +39,10 @@ def find_shopping_item(text):
 
     def get_labels_decoded(arr):
         return label_encoder.inverse_transform(arr)
+
     def cosine(u, v):
         return np.dot(u, v) / (np.linalg.norm(u) * np.linalg.norm(v))
+
     en_nlp = spacy.load("en_core_web_sm")
     doc = en_nlp(text)
     sentence = next(doc.sents)
@@ -50,22 +53,26 @@ def find_shopping_item(text):
             productlisting.append(str(line).strip())
     for word in sentence:
         if "obj" in word.dep_ or "conj" in word.dep_:
-            if cosine( model.encode(["shopping market or grocery store"])[0],
-                model.encode([str(word)])[0],
-            ) < cosine(
-                model.encode(["food or item"])[0], model.encode([str(word)])[0]
+            if (
+                cosine(
+                    model.encode(["shopping market or grocery store"])[0],
+                    model.encode([str(word)])[0],
+                )
+                < cosine(
+                    model.encode(["food or item"])[0], model.encode([str(word)])[0]
+                )
             ):
                 # print(word)
                 temp = word
                 if prev[1] == "amod":
                     # This is used for compound words
-                    word = prev[0]+ " " + word
+                    word = prev[0] + " " + word
                 # checks cosine similarity
                 cosSim = cosine(
                     model.encode(["grocery item"])[0],
                     model.encode([str(word)])[0],
                 )
-                print(cosSim) 
+                print(cosSim)
                 curwordvec = en_nlp(str(temp))
                 if cosSim > 0.35:
                     predicted_item.add(word)

@@ -15,10 +15,15 @@ class DashboardServiceStub(object):
             channel: A grpc.Channel.
         """
         self.getDashboardData = channel.unary_unary(
-                '/plp.proto.DashboardService/getDashboardData',
-                request_serializer=plp_dot_proto_dot_Dashboard__pb2.DashboardRequest.SerializeToString,
-                response_deserializer=plp_dot_proto_dot_Dashboard__pb2.DashboardResponse.FromString,
-                )
+            "/plp.proto.DashboardService/getDashboardData",
+            request_serializer=plp_dot_proto_dot_Dashboard__pb2.DashboardRequest.SerializeToString,
+            response_deserializer=plp_dot_proto_dot_Dashboard__pb2.DashboardResponse.FromString,
+        )
+        self.getDashboardPermissions = channel.unary_unary(
+            "/plp.proto.DashboardService/getDashboardPermissions",
+            request_serializer=plp_dot_proto_dot_Dashboard__pb2.EmptyDashboard.SerializeToString,
+            response_deserializer=plp_dot_proto_dot_Dashboard__pb2.DashboardPermissionResponse.FromString,
+        )
 
 
 class DashboardServiceServicer(object):
@@ -27,40 +32,93 @@ class DashboardServiceServicer(object):
     def getDashboardData(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
+    def getDashboardPermissions(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
 
 def add_DashboardServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'getDashboardData': grpc.unary_unary_rpc_method_handler(
-                    servicer.getDashboardData,
-                    request_deserializer=plp_dot_proto_dot_Dashboard__pb2.DashboardRequest.FromString,
-                    response_serializer=plp_dot_proto_dot_Dashboard__pb2.DashboardResponse.SerializeToString,
-            ),
+        "getDashboardData": grpc.unary_unary_rpc_method_handler(
+            servicer.getDashboardData,
+            request_deserializer=plp_dot_proto_dot_Dashboard__pb2.DashboardRequest.FromString,
+            response_serializer=plp_dot_proto_dot_Dashboard__pb2.DashboardResponse.SerializeToString,
+        ),
+        "getDashboardPermissions": grpc.unary_unary_rpc_method_handler(
+            servicer.getDashboardPermissions,
+            request_deserializer=plp_dot_proto_dot_Dashboard__pb2.EmptyDashboard.FromString,
+            response_serializer=plp_dot_proto_dot_Dashboard__pb2.DashboardPermissionResponse.SerializeToString,
+        ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'plp.proto.DashboardService', rpc_method_handlers)
+        "plp.proto.DashboardService", rpc_method_handlers
+    )
     server.add_generic_rpc_handlers((generic_handler,))
 
 
- # This class is part of an EXPERIMENTAL API.
+# This class is part of an EXPERIMENTAL API.
 class DashboardService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def getDashboardData(request,
+    def getDashboardData(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/plp.proto.DashboardService/getDashboardData',
+            "/plp.proto.DashboardService/getDashboardData",
             plp_dot_proto_dot_Dashboard__pb2.DashboardRequest.SerializeToString,
             plp_dot_proto_dot_Dashboard__pb2.DashboardResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
+
+    @staticmethod
+    def getDashboardPermissions(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/plp.proto.DashboardService/getDashboardPermissions",
+            plp_dot_proto_dot_Dashboard__pb2.EmptyDashboard.SerializeToString,
+            plp_dot_proto_dot_Dashboard__pb2.DashboardPermissionResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )

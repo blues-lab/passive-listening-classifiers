@@ -4,7 +4,8 @@ from .remove_punc_and_stopwords import remove_punc
 import spacy
 import pandas as pd
 
-nlp = spacy.load('en_core_web_lg')
+nlp = spacy.load("en_core_web_lg")
+
 
 def compute_loc(context):
     if type(context) == list:
@@ -34,9 +35,10 @@ def compute_loc(context):
     else:
         return ""
 
+
 if __name__ == "__main__":
-    #context = ["How is like to be in Berkeley", "Last few weeks it's been very hot","I think we should check the weather in San Jose instead"]
-    #print(compute_loc(context))
+    # context = ["How is like to be in Berkeley", "Last few weeks it's been very hot","I think we should check the weather in San Jose instead"]
+    # print(compute_loc(context))
 
     data = pd.read_csv("text_generation/megatron11b_examples.csv")
     for text in data.iloc[:, 0]:

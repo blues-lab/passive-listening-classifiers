@@ -4,8 +4,10 @@ import os
 import gdown
 import zipfile
 
+
 def extract_id_from_google_drive_share_link(drive_link):
     return drive_link
+
 
 """
 Example model json format
@@ -30,10 +32,10 @@ with open("src/models.json") as model_file:
 
         if not os.path.exists(relative_folder_loc):
             os.mkdir(relative_folder_loc)
-        
+
         url = model_download["download_url"]
-        output = os.path.join(relative_folder_loc, f'{name}_model_files.{file_type}')
-        
+        output = os.path.join(relative_folder_loc, f"{name}_model_files.{file_type}")
+
         if provider == "google":
             print(url, output)
             gdown.download(url, output, quiet=False)
@@ -41,7 +43,7 @@ with open("src/models.json") as model_file:
             raise UnsupportedOperation()
 
         if file_type == "zip":
-            with zipfile.ZipFile(output,"r") as zip_ref:
+            with zipfile.ZipFile(output, "r") as zip_ref:
                 zip_ref.extractall(relative_folder_loc)
         else:
             raise UnsupportedOperation()
